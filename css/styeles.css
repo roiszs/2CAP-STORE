@@ -25,6 +25,7 @@ header ul {
     margin: 0;
     display: flex;
     gap: 20px;
+    margin-right: 20px;
 
 }
 header a {
@@ -39,6 +40,15 @@ header a:hover {
     color: white;
     border-bottom: 2px solid #ffffff;
     padding-bottom: 2px;
+}
+
+#cart-count {
+    background-color: red;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 50%;
+    margin-left: 5px;
+    font-size: 0.9em;
 }
 
 #products {
