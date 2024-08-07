@@ -19,7 +19,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-  function addToCart(productId) {
-    alert(`Producto con ID ${productId} añadido al carrito.`);
-  }
-  
