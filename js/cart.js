@@ -12,13 +12,30 @@ function addToCart(productId) {
 
 
     updateCartCount();
-    alert(`${product.name} ha sido añadido al carrito.`);
+    showCartModal(product.name); //Llama a la funcion para mostrar el modal
 }
 
 function updateCartCount() {
     const cartCountElement = document.getElementById('cart-count');
     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
     cartCountElement.textContent = `(${totalItems})`;
+}
 
+function showCartModal(productName) {
+    const modal = document.getElementById('cart-modal');
+    const modalMessage = document.getElementById('modal-message');
+    const closeBtn = document.querySelector('.close-btn');
 
+    modalMessage.textContent = `${productName} ha sido añadido al carrito.`;
+    modal.style.display = "block";
+
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
 }
