@@ -14,6 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
        {id: 6, name: '2CAP', price:25.00, image: '../images/junir h.png' },
        //Agregar mas productos aqui si es necesario
     ];
+
+    //Hacemos los productos accesibles globalmente
+    window.featuredProducts = featuredProducts;
+    window.allProducts = allProducts;
+    window.products = [...featuredProducts, ...allProducts];
   
     //Mostrar productos destacados
    const productsContainer = document.getElementById('products');
