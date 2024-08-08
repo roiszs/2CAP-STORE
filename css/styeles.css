@@ -143,3 +143,75 @@ header a:hover {
     text-decoration: none;
     cursor: pointer;
 }
+
+/* Estilos generales para el carrito */
+
+#cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.car-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.cart-item img {
+    max-width: 100px;
+    border-radius: 8px;
+}
+
+.cart-item h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.cart-item p {
+    margin: 0;
+    color: #555;
+}
+
+.cart-item button {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart-item button:hover {
+    background-color: #cc0000;
+}
+
+#cart-summary {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+}
+
+#cart-summary p {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+#cheackout-button {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#cheackout-button:hover {
+    background-color: #333333;
+}
