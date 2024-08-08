@@ -1,7 +1,7 @@
 let cart = [];
 
 function addToCart(productId) {
-    const product = products.find(item => item.id === productId);
+    const product = window.products.find(item => item.id === productId);
     const productInCart = cart.find(item => item.id === productId);
 
     if (productInCart) {
