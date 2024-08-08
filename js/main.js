@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     window.products = [
-      { id: 1, name: 'Producto 1', price: 10.00, image: '../images/Bass Pro Shops.png'},
-      { id: 2, name: 'Producto 2', price: 20.00, image: '../images/ct.png'},
-      { id: 3, name: 'Producto 3', price: 30.00, image: '../images/junir h.png'},
+      { id: 1, name: 'Bass Pro Shops', price: 10.00, image: '../images/Bass Pro Shops.png'},
+      { id: 2, name: 'Gorra CT', price: 20.00, image: '../images/ct.png'},
+      { id: 3, name: 'Gorra Junior H', price: 30.00, image: '../images/junir h.png'},
     ];
   
     const productsContainer = document.getElementById('products');
