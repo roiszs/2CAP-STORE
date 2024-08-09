@@ -1,4 +1,9 @@
-let cart = [];
+let cart = JSON.parse(localStorage.getItem('cart')) || []; //Cargar el carrito del localStorage o iniciar vacio
+
+function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart)); // guardar el carrito en localStorage
+}
+
 
 function addToCart(productId) {
     const product = window.products.find(item => item.id === productId);
@@ -12,6 +17,8 @@ function addToCart(productId) {
 
 
     updateCartCount();
+    updateCartDisplay();
+    saveCart(); // Guardar el carrito en localStorage despues de actualizarlo
     showCartModal(product.name); //Llama a la funcion para mostrar el modal
 }
 
@@ -19,6 +26,44 @@ function updateCartCount() {
     const cartCountElement = document.getElementById('cart-count');
     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
     cartCountElement.textContent = `(${totalItems})`;
+}
+
+function updateCartDisplay() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    if (cartItemsContainer) {
+    cartItemsContainer.innerHTML = '';// Limpiamos el contenido previo
+
+    cart.forEach(item => {
+        const cartItemElement = document.createElement('div');
+        cartItemElement.className = 'cart-item';
+        cartItemElement.innerHTML = `
+         <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+            <div class="cart-item-details">
+                <h3>${item.name}</h3>
+                <p>Precio: $${item.price.toFixed(2)}</p>
+                <p>Cantidad: ${item.quantity}</p>
+            </div>
+            <button onclick="removeFromCart(${item.id})">Eliminar</button>
+        `;
+        cartItemsContainer.appendChild(cartItemElement);
+    });
+        updateCartTotal();
+    }
+}
+
+function updateCartTotal() {
+    const cartTotalElement = document.getElementById('cart-total');
+    if (cartTotalElement) {
+        const totalAmount = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+        cartTotalElement.textContent = `Total: $${totalAmount.toFixed(2)}`;
+    }
+}
+
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id != productId);
+    updateCartCount();
+    updateCartDisplay();
+    saveCart(); // Giarda el carrito en localStorage despues de actualizarlo
 }
 
 function showCartModal(productName) {
@@ -39,3 +84,6 @@ function showCartModal(productName) {
         }
     }
 }
+
+//Actualizar la visualizacion del carrito al cargar la pagina del carrito
+document.addEventListener('DOMContentLoaded', updateCartDisplay);
