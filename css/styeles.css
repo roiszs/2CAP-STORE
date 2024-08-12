@@ -148,18 +148,20 @@ header a:hover {
 
 #cart-items {
     display: flex;
-    flex-direction: column;
     gap: 20px;
+    flex-wrap: nowrap; /*Evita que los elementos se envuelvan */
+    overflow-x: auto; /* Agrega scroll horizontal si hay muchos elementos */
 }
 
 .car-item {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Configura los elementos internos en columna */
     align-items: center;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
     background-color: #f9f9f9;
+    min-width: 200px; /* Asegura un ancho minimo para cada producto*/
 }
 
 .cart-item img {
