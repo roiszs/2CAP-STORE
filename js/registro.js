@@ -5,11 +5,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const passwordInput = document.getElementById('password');
     const confirmPasswordInput = document.getElementById('confirm-password');
     const errorMessages = document.querySelectorAll('.error-message');
+    const successModal = document.getElementById('success-modal');
+    const closeModalBtn = successModal.querySelector('.close-btn');
 
     form.addEventListener('submit', function (event) {
+        event.preventDefault(); // Evita el envío inmediato del formulario
+
         // Resetear mensajes de error
         errorMessages.forEach(error => error.textContent = '');
-        
+
         let valid = true;
 
         // Validación del nombre
@@ -37,8 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (!valid) {
-            event.preventDefault(); // Evita el envío del formulario si hay errores
-            return;
+            return; // Detener si hay errores
         }
 
         // Si todo es válido, proceder con el registro
@@ -46,8 +49,18 @@ document.addEventListener('DOMContentLoaded', function () {
         usuarios.push({ nombre: nameInput.value, email: emailInput.value, password: passwordInput.value });
         localStorage.setItem('usuarios', JSON.stringify(usuarios));
 
-        alert('Registro exitoso');
-        window.location.href = 'index.html'; // Redirigir a la página de inicio
+        // Mostrar el modal de éxito
+        successModal.style.display = 'flex';
+
+        // Esperar 3 segundos y redirigir
+        setTimeout(function () {
+            successModal.style.display = 'none';
+            window.location.href = 'index.html'; // Redirigir a la página de inicio
+        }, 3000);
+    });
+
+    closeModalBtn.addEventListener('click', function () {
+        successModal.style.display = 'none'; // Cerrar el modal
     });
 
     function showError(input, message) {
