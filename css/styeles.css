@@ -254,3 +254,14 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #333333;
 }
+
+input.error {
+    border-color: red;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 5px;
+    display: block;
+}
