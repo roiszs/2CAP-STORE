@@ -50,13 +50,16 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('usuarios', JSON.stringify(usuarios));
 
         // Mostrar el modal de éxito
-        successModal.style.display = 'flex';
+        if (valid) {
+            // Mostrar el modal de éxito
+            successModal.style.display = 'flex';
 
-        // Esperar 3 segundos y redirigir
-        setTimeout(function () {
-            successModal.style.display = 'none';
-            window.location.href = 'index.html'; // Redirigir a la página de inicio
-        }, 3000);
+            // Esperar 3 segundos y redirigir
+            setTimeout(function () {
+                successModal.style.display = 'none';
+                window.location.href = 'index.html';
+            }, 3000);
+        }
     });
 
     closeModalBtn.addEventListener('click', function () {
