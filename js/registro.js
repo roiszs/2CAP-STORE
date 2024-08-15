@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const confirmPasswordInput = document.getElementById('confirm-password');
     const errorMessages = document.querySelectorAll('.error-message');
     const successModal = document.getElementById('success-modal');
-    const closeModalBtn = successModal.querySelector('.close-btn');
+    const closeModalBtn = successModal.querySelector('.close-btn2');
 
     form.addEventListener('submit', function (event) {
         event.preventDefault(); // Evita el envío inmediato del formulario

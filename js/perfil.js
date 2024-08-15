@@ -1,29 +1,53 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const perfilForm = document.getElementById('perfilForm');
-    const perfilNombre = document.getElementById('perfil-nombre');
-    const perfilCorreo = document.getElementById('perfil-correo');
+    const editarPerfilBtn = document.getElementById('editarPerfilBtn');
+    const modalEditarPerfil = document.getElementById('modalEditarPerfil');
+    const closeBtn = document.querySelector('.close-btn');
+    const editarPerfilForm = document.getElementById('editarPerfilForm');
+    const nombrePerfil = document.getElementById('nombrePerfil');
+    const correoPerfil = document.getElementById('correoPerfil');
 
-    // Cargar informacion del susuario
+    // Cargar información del usuario
     const nombre = localStorage.getItem('nombre') || '';
     const correo = localStorage.getItem('correo') || '';
 
-    perfilForm.nombre.value = nombre;
-    perfilForm.correo.value = correo;
+    nombrePerfil.textContent = nombre;
+    correoPerfil.textContent = correo;
 
-    perfilNombre.textContent = nombre;
-    perfilCorreo.textContent = correo;
+    editarPerfilBtn.addEventListener('click', function () {
+        // Cargar valores en el formulario
+        editarPerfilForm.nombre.value = nombre;
+        editarPerfilForm.correo.value = correo;
 
-    perfilForm.addEventListener('submit', function(e) {
+        // Mostrar modal
+        modalEditarPerfil.style.display = 'flex';
+    });
+
+    closeBtn.addEventListener('click', function () {
+        // Ocultar modal
+        modalEditarPerfil.style.display = 'none';
+    });
+
+    window.addEventListener('click', function (e) {
+        if (e.target == modalEditarPerfil) {
+            // Ocultar modal si se hace clic fuera del contenido del modal
+            modalEditarPerfil.style.display = 'none';
+        }
+    });
+
+    editarPerfilForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        //Guardar cambios
-        localStorage.setItem('nombre', perfilForm.nombre.value);
-        localStorage.setItem('correo', perfilForm.correo.value);
+        // Guardar cambios
+        localStorage.setItem('nombre', editarPerfilForm.nombre.value);
+        localStorage.setItem('correo', editarPerfilForm.correo.value);
 
-        // Reflejar los cambios en la parte del perfil
-        perfilNombre.textContent = perfilForm.nombre.value;
-        perfilCorreo.textContent = perfilForm.correo.value;
+        // Actualizar información mostrada en el perfil
+        nombrePerfil.textContent = editarPerfilForm.nombre.value;
+        correoPerfil.textContent = editarPerfilForm.correo.value;
 
-        alert('Perfil actualizado con exito');
+        // Ocultar modal
+        modalEditarPerfil.style.display = 'none';
+
+        alert('Perfil actualizado con éxito');
     });
 });

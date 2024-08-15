@@ -69,7 +69,7 @@ function removeFromCart(productId) {
 function showCartModal(productName) {
     const modal = document.getElementById('cart-modal');
     const modalMessage = document.getElementById('modal-message');
-    const closeBtn = document.querySelector('.close-btn');
+    const closeBtn = document.querySelector('.close-btn1');
 
     modalMessage.textContent = `${productName} ha sido añadido al carrito.`;
     modal.style.display = "block";

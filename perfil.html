@@ -20,34 +20,36 @@
         </nav>
     </header>
 
-    <div id="perfil-container">
-        <h2>Perfil de Usuario</h2>
-        <form id="perfilForm">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre">
+    <div class="perfil-container">
+        <h2>Mi Perfil</h2>
+        <div class="perfil-info">
+            <p><strong>Nombre:</strong><span id="nombrePerfil"></span></p>
+            <p><strong>Correo Electrónico:</strong><span id="correoPerfil"></span></p>
+            <p><strong>Contraseña:</strong><span id="passwordPerfil"></span>***********</p>
 
-            <label for="correo">Correo Electrónico:</label>
-            <input type="email" id="correo" name="correo">
+        </div>
+        <button id="editarPerfilBtn">Editar Perfil</button>
+    </div>
 
-            <label for="contraseña">Contraseña:</label>
-            <input type="password" id="contraseña" name="contraseña">
+    <!-- MODAL PARA EDITAR PERFIL -->
 
-            <button type="submit">Guardar Cambios</button>
-        </form>
+    <div id="modalEditarPerfil" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <form id="editarPerfilForm">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre">
 
-        <div id="miPerfil">
-            <h3>Mi Perfil</h3>
-            <div class="perfil-info">
-                <div>
-                    <p><strong>Nombre:</strong></p>
-                    <p id="perfil-nombre"></p>
-                </div>
-                <div>
-                    <p><strong>Correo Electrónico:</strong></p>
-                    <p id="perfil-correo"></p>
-                </div>
-                <button class="edit-btn">Editar Información</button>
-            </div>
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" id="correo" name="correo">
+
+                <label for="contraseña">Contraseña</label>
+                <input type="password" id="contraseñ" name="contraseña">
+
+                <button type="submit">Guardar Cambios</button>
+
+            </form>
+
         </div>
     </div>
    
