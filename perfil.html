@@ -13,25 +13,38 @@
             <ul> 
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="cart.html">Carrito <span id="cart-count">(0)</span></a></li>
-                <li><a href="registro.html">Registrarse</a></li> <!-- Enlace al registro -->
                 <li><a href="perfil.html">Perfil</a></li>
             </ul>
         </nav>
     </header>
-    <h2>Perfil de Usuario</h2>
-    <form id="perfilForm">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre">
 
-        <label for="correo">Correo Electronico:</label>
-        <input type="email" id="correo" name="correo">
 
-        <label for="contraseña">Contraseña:</label>
-        <input type="password" id="contraseña" name="contraseña">
+   <div class="perfil-container">
+    <div class="perfil-info">
+        <h2>Mi Perfil</h2>
+        <p><strong>Nombre:</strong> <span id="perfil-nombre"></span></p>
+        <p><strong>Correo Electronico:</strong> <span id="perfil-correo"></span></p>
 
-        <button type="submit">Guardar Cambios</button>
+    </div>
 
-    </form>
+    <div class="perfil-edit">
+        <h2>Editar Perfil</h2>
+        <form id="perfilForm">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre">
+
+            <label for="nombre">Correo Electronico:</label>
+            <input type="email" id="correo" name="correo">
+
+            <label for="contraseña">Contraseña:</label>
+            <input type="password" id="contraseña" name="contraseña">
+
+            <button type="submit">Guardar Cambios</button>
+
+        </form>
+    </div>
+
+   </div>
 
     <script src="/js/perfil.js"></script>
     
