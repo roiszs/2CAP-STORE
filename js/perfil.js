@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
     const editarPerfilBtn = document.getElementById('editarPerfilBtn');
     const modalEditarPerfil = document.getElementById('modalEditarPerfil');
-    const closeBtn = document.querySelector('.close-btn');
+    const closeBtn = document.querySelector('.close-btn3', 'close-btn');
     const editarPerfilForm = document.getElementById('editarPerfilForm');
     const nombrePerfil = document.getElementById('nombrePerfil');
     const correoPerfil = document.getElementById('correoPerfil');
+    const successModal = document.getElementById('successModal');
+    const successMessage = document.getElementById('successMessage3');
 
     // Cargar información del usuario
     const nombre = localStorage.getItem('nombre') || '';
@@ -25,12 +27,14 @@ document.addEventListener('DOMContentLoaded', function () {
     closeBtn.addEventListener('click', function () {
         // Ocultar modal
         modalEditarPerfil.style.display = 'none';
+        successModal.style.display = 'none';
     });
 
     window.addEventListener('click', function (e) {
-        if (e.target == modalEditarPerfil) {
+        if (e.target == modalEditarPerfil || e.target == successModal) {
             // Ocultar modal si se hace clic fuera del contenido del modal
             modalEditarPerfil.style.display = 'none';
+            successModal.style.display = 'none';
         }
     });
 
@@ -45,9 +49,12 @@ document.addEventListener('DOMContentLoaded', function () {
         nombrePerfil.textContent = editarPerfilForm.nombre.value;
         correoPerfil.textContent = editarPerfilForm.correo.value;
 
-        // Ocultar modal
+        // Ocultar modal de edición
         modalEditarPerfil.style.display = 'none';
 
-        alert('Perfil actualizado con éxito');
+        // Mostrar modal de éxito
+        successMessage.textContent = 'Perfil actualizado con éxito';
+        successModal.style.display = 'block';
     });
 });
+
