@@ -1,9 +1,8 @@
-let cart = JSON.parse(localStorage.getItem('cart')) || []; //Cargar el carrito del localStorage o iniciar vacio
+let cart = JSON.parse(localStorage.getItem('cart')) || []; // Cargar el carrito del localStorage o iniciar vacío
 
 function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cart)); // guardar el carrito en localStorage
+    localStorage.setItem('cart', JSON.stringify(cart)); // Guardar el carrito en localStorage
 }
-
 
 function addToCart(productId) {
     const product = window.products.find(item => item.id === productId);
@@ -12,14 +11,13 @@ function addToCart(productId) {
     if (productInCart) {
         productInCart.quantity += 1;
     } else {
-        cart.push({...product, quantity: 1});
+        cart.push({ ...product, quantity: 1 });
     }
 
-
+    saveCart(); // Guardar el carrito en localStorage después de actualizarlo
     updateCartCount();
     updateCartDisplay();
-    saveCart(); // Guardar el carrito en localStorage despues de actualizarlo
-    showCartModal(product.name); //Llama a la funcion para mostrar el modal
+    showCartModal(product.name); // Llama a la función para mostrar el modal
 }
 
 function updateCartCount() {
@@ -31,22 +29,27 @@ function updateCartCount() {
 function updateCartDisplay() {
     const cartItemsContainer = document.getElementById('cart-items');
     if (cartItemsContainer) {
-    cartItemsContainer.innerHTML = '';// Limpiamos el contenido previo
+        cartItemsContainer.innerHTML = ''; // Limpiamos el contenido previo
 
-    cart.forEach(item => {
-        const cartItemElement = document.createElement('div');
-        cartItemElement.className = 'cart-item';
-        cartItemElement.innerHTML = `
-         <img src="${item.image}" alt="${item.name}" class="cart-item-image">
-            <div class="cart-item-details">
-                <h3>${item.name}</h3>
-                <p>Precio: $${item.price.toFixed(2)}</p>
-                <p>Cantidad: ${item.quantity}</p>
-            </div>
-            <button onclick="removeFromCart(${item.id})">Eliminar</button>
-        `;
-        cartItemsContainer.appendChild(cartItemElement);
-    });
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = '<p>El carrito está vacío.</p>';
+        } else {
+            cart.forEach(item => {
+                const cartItemElement = document.createElement('div');
+                cartItemElement.className = 'cart-item';
+                cartItemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <h3>${item.name}</h3>
+                        <p>Precio: $${item.price.toFixed(2)}</p>
+                        <p>Cantidad: ${item.quantity}</p>
+                    </div>
+                    <button onclick="removeFromCart(${item.id})">Eliminar</button>
+                `;
+                cartItemsContainer.appendChild(cartItemElement);
+            });
+        }
+
         updateCartTotal();
     }
 }
@@ -61,9 +64,9 @@ function updateCartTotal() {
 
 function removeFromCart(productId) {
     cart = cart.filter(item => item.id != productId);
+    saveCart(); // Guardar el carrito en localStorage después de actualizarlo
     updateCartCount();
     updateCartDisplay();
-    saveCart(); // Giarda el carrito en localStorage despues de actualizarlo
 }
 
 function showCartModal(productName) {
@@ -85,9 +88,12 @@ function showCartModal(productName) {
     }
 }
 
+// Asegurar que el carrito se actualice al cargar la página
 document.addEventListener('DOMContentLoaded', function () {
-    const checkoutButton = document.getElementById('checkout-button');
+    updateCartCount();
+    updateCartDisplay();
 
+    const checkoutButton = document.getElementById('checkout-button');
     checkoutButton.addEventListener('click', function (event) {
         event.preventDefault(); // Prevenir el envío del formulario por defecto
 
@@ -134,3 +140,4 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 3000); // 3 segundos antes de redirigir
     });
 });
+
