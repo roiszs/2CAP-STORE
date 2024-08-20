@@ -501,22 +501,57 @@ input.error {
     background-color: #0056b3;
 }
 
-/* Estilos para el mensaje de agradecimiento */
-.thank-you-message {
-    text-align: center;
+/* Estilos para los detalles de pago guardados */
+.payment-details {
+    margin-top: 20px;
     padding: 20px;
-    background-color: #eaf4e1;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 30px auto;
 }
 
-.thank-you-message h2 {
-    color: #28a745;
-    font-family: 'Arial', sans-serif;
-    margin-bottom: 10px;
-}
-
-.thank-you-message p {
+.payment-details h2 {
+    text-align: center;
     color: #333;
-    font-size: 16px;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.payment-details p {
+    font-size: 1.1em;
+    margin: 10px 0;
+    padding: 10px;
+    border-left: 4px solid #007bff; /* Línea de color a la izquierda para resaltar */
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#saved-card-name, 
+#saved-card-number, 
+#saved-card-expiry, 
+#saved-address {
+    color: #333;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+#saved-card-name {
+    font-weight: bold;
+}
+
+#saved-card-number {
+    font-weight: bold;
+}
+
+#saved-card-expiry {
+    font-style: italic;
+}
+
+#saved-address {
+    font-size: 1em;
+    color: #555;
 }
