@@ -77,3 +77,43 @@ document.addEventListener('DOMContentLoaded', function () {
         return re.test(String(email).toLowerCase());
     }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('form');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('confirm-password');
+    const errorMessages = document.querySelectorAll('.error-message');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+
+        // Validación básica
+        if (name === '' || email === '' || password === '' || confirmPassword === '') {
+            errorMessages.forEach(msg => msg.textContent = 'Todos los campos son obligatorios.');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            confirmPasswordInput.nextElementSibling.textContent = 'Las contraseñas no coinciden.';
+            return;
+        }
+
+        // Guardar datos en localStorage
+        const user = { name, email, password };
+        localStorage.setItem('user', JSON.stringify(user));
+
+        // Mostrar modal de éxito y redirigir a inicio
+        const successModal = document.getElementById('success-modal');
+        successModal.style.display = 'block';
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 2000);
+    });
+});

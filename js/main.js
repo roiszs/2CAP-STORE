@@ -57,4 +57,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   
   });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const registroLink = document.querySelector('nav ul li a[href="registro.html"]');
+    const perfilLink = document.querySelector('nav ul li a[href="perfil.html"]');
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (user) {
+        registroLink.style.display = 'none';
+        perfilLink.style.display = 'block';
+    } else {
+        registroLink.style.display = 'block';
+        perfilLink.style.display = 'none';
+    }
+});
+
   
