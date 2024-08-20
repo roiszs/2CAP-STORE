@@ -85,5 +85,52 @@ function showCartModal(productName) {
     }
 }
 
-//Actualizar la visualizacion del carrito al cargar la pagina del carrito
-document.addEventListener('DOMContentLoaded', updateCartDisplay);
+document.addEventListener('DOMContentLoaded', function () {
+    const checkoutButton = document.getElementById('checkout-button');
+
+    checkoutButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevenir el envío del formulario por defecto
+
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cart.length === 0) {
+            alert('El carrito está vacío.');
+            return;
+        }
+
+        // Capturar los valores del formulario
+        const cardNumber = document.getElementById('card-number').value;
+        const cardName = document.getElementById('card-name').value;
+        const cardExpiry = document.getElementById('card-expiry').value;
+        const cardCVC = document.getElementById('card-cvc').value;
+        const address = document.getElementById('address').value;
+
+        if (!cardNumber || !cardName || !cardExpiry || !cardCVC || !address) {
+            alert('Por favor, complete todos los campos.');
+            return;
+        }
+
+        // Guardar la información de la compra en localStorage (simulación)
+        const order = {
+            cart,
+            cardNumber,
+            cardName,
+            cardExpiry,
+            cardCVC,
+            address,
+            total: cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
+        };
+
+        localStorage.setItem('order', JSON.stringify(order));
+
+        // Mostrar el mensaje de agradecimiento y ocultar el formulario de pago
+        document.getElementById('payment-form').style.display = 'none';
+        document.getElementById('thank-you-message').style.display = 'block';
+
+        // Limpiar el carrito y redirigir a la página de inicio después de un tiempo
+        setTimeout(function() {
+            localStorage.removeItem('cart');
+            updateCartDisplay();
+            window.location.href = 'index.html';
+        }, 3000); // 3 segundos antes de redirigir
+    });
+});

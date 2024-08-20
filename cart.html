@@ -28,7 +28,44 @@
             <p id="cart-total">Total: $0.00</p>
             <button id="checkout-button">Finalizar Compra</button>
         </div>
+
+        <!-- Formulario de pago con tarjeta -->
+<section class="payment-section">
+    <h2>Información de Pago</h2>
+    <form id="payment-form">
+        <div class="form-group">
+            <label for="card-name">Nombre en la tarjeta</label>
+            <input type="text" id="card-name" name="card-name" placeholder="Nombre completo" required>
+        </div>
+        <div class="form-group">
+            <label for="card-number">Número de la tarjeta</label>
+            <input type="text" id="card-number" name="card-number" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+        </div>
+        <div class="form-group">
+            <label for="card-expiry">Fecha de expiración</label>
+            <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/AA" required>
+        </div>
+        <div class="form-group">
+            <label for="card-cvc">CVC</label>
+            <input type="text" id="card-cvc" name="card-cvc" placeholder="CVC" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Dirección de envío</label>
+            <input type="text" id="address" name="address" placeholder="Dirección completa" required>
+        </div>
+        <button type="submit" id="checkout-button" class="btn-submit">Pagar</button>
+    </form>
+</section>
+
+<!-- Mensaje de agradecimiento (inicialmente oculto) -->
+<section id="thank-you-message" class="thank-you-message" style="display: none;">
+    <h2>¡Gracias por su compra!</h2>
+    <p>Su pedido ha sido procesado con éxito. Le enviaremos un correo con los detalles.</p>
+</section>
+
     </main>
+
+
 
     <footer>
         <p>&copy; 2024 2CAP</p>
